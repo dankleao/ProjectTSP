@@ -12,6 +12,7 @@
 #include "def.h"
 #include "graphio.h"
 #include "tsp.h"
+#include "tools.h"
 
 /*******************************************************************************
 *                                    MACROS                                    *
@@ -59,16 +60,15 @@ PUBLIC int main(int argc , char * argv[] )
 			}
 		case 3:
 			if ( evaluateExpression(argv) )
-            		{
+            {
 				InfoFile infoFile = {argv[2],"r"};
 				initTSP((*(++argv[1])),&infoFile);
-            		}
-			else
-            		{
-                		printf("Command line arguments: option: \"%s\" not recognized!\n",argv[1]);
-            		}
-           		 break;
-	
+            }
+            else
+            {
+                printf("Command line arguments: option: \"%s\" not recognized!\n",argv[1]);
+            }
+            break;
 		default:
 			err("number of args exceed");
 	}

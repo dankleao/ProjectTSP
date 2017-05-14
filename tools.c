@@ -7,11 +7,6 @@
 #include <stdlib.h>
 #include "tools.h"
 
-/*
-    Converte int para String(char*).
-    *Obs: int2str(int), converte somente valores positivos.
-*/
-
 PRIVATE String bufferPtr = NULL;
 
 void int2str2(int num,int numDigit)
@@ -52,5 +47,6 @@ PRIVATE inline char getChr(int num)
 {
     return (char)(num + '0');
 }
+
 
 

@@ -9,8 +9,8 @@
 
 PRIVATE String str;
 
-PUBLIC char* itoa( int);
-PRIVATE void itoa2(int,int);
+PUBLIC String int2str(int);
+PRIVATE void int2str2(int,int);
 PRIVATE inline char getChr(int);
 
 #endif //PROJECTPCV_TOOLS_H
