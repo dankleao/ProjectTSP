@@ -112,11 +112,18 @@ PRIVATE void walk()
     if( currentCost < bestRoute.distance )
     {
         bestRoute.distance = currentCost;
-        bestRoute.path = strcat(itoa(arbitraryVertex),"");
+        String str = NULL;
+        str = int2str(arbitraryVertex);
+        bestRoute.path = strcat( str," " );
         int j;
-        for (i = 1, j = 0; j < SIZE_G - 1; ++i, ++j)
-            bestRoute.path = strcat( strcat(bestRoute.path," "), itoa(p[j]));
-        bestRoute.path = strcat(strcat(bestRoute.path," "), itoa(arbitraryVertex));
+        for( i = 1, j = 0 ; j < SIZE_G - 1 ; ++i, ++j )
+        {
+            str = int2str( p[j] );
+            bestRoute.path = strcat( bestRoute.path, strcat(str," ") );
+
+        }
+        str = int2str(arbitraryVertex);
+        bestRoute.path = strcat(bestRoute.path, str);
     }
 }
 
