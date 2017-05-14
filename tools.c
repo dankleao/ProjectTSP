@@ -3,44 +3,54 @@
 //
 
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "tools.h"
 
-void itoa2(int num,int numDigit)
+/*
+    Converte int para String(char*).
+    *Obs: int2str(int), converte somente valores positivos.
+*/
+
+PRIVATE String bufferPtr = NULL;
+
+void int2str2(int num,int numDigit)
 {
     static int maxDigit = 0;
     if( num <= 99 )
     {
-        str = (String) malloc(sizeof(char)*numDigit);
-        str[0] = getChr(num/10);
-        str[1] = getChr(num%10);
         maxDigit = numDigit;
+        bufferPtr = (String) malloc(sizeof(char)*(maxDigit+1));
+        bufferPtr[0] = getChr(num/10);
+        bufferPtr[1] = getChr(num%10);
+        bufferPtr[maxDigit] = '\0';
         return;
     }
-    itoa2(num/10,(numDigit+1));
-    str[maxDigit-(numDigit-1)] = getChr(num%10);
+    int2str2(num/10,(numDigit+1));
+    bufferPtr[maxDigit-(numDigit-1)] = getChr(num%10);
 }
 
-char* itoa(int num)
+String int2str(int num)
 {
+    if( num < 0 )
+        num *= -1;
+
     if( num <= 9 )
     {
-        str = (String) malloc(sizeof(char));
-        str[0] = getChr(num);
-        return str;
+        bufferPtr = (char*) malloc(sizeof(char)+1);
+        bufferPtr[0] = getChr(num);
+        bufferPtr[1] = '\0';
     }
     else
     {
-        int numDigit = 2;
-        itoa2(num,numDigit);
-        return str;
+        int2str2(num,2);
     }
+    return bufferPtr;
 }
 
 PRIVATE inline char getChr(int num)
 {
     return (char)(num + '0');
 }
-
 
 
